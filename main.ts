@@ -32,14 +32,14 @@ basic.forever(function () {
 })
 basic.forever(function () {
     if (pacman.isTouching(janaria)) {
-        music.playMelody("- - - - - - - C ", 500)
+        music.playMelody("- - - - - - - C5 ", 500)
         game.addScore(1)
         janaria.delete()
         janaria = game.createSprite(randint(0, 4), randint(0, 4))
         janaria.set(LedSpriteProperty.Brightness, 10)
     }
     if (pacman.isTouching(mamua)) {
-        music.playMelody("- - - - - - - C5 ", 500)
+        music.playMelody("- - - - - - - C ", 500)
         game.gameOver()
     }
 })
