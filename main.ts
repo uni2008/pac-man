@@ -12,21 +12,32 @@ basic.forever(function () {
     mamua.ifOnEdgeBounce()
 })
 basic.forever(function () {
-    basic.pause(500)
+    basic.pause(100)
     if (input.acceleration(Dimension.X) > 200) {
         pacman.move(1)
         basic.pause(200)
     }
-    if (input.acceleration(Dimension.X) > -200) {
+    if (input.acceleration(Dimension.X) < -200) {
         pacman.move(-1)
         basic.pause(200)
-        if (input.acceleration(Dimension.X) > 200) {
-            pacman.move(1)
-            basic.pause(200)
-        }
-        if (input.acceleration(Dimension.X) > -200) {
-            pacman.move(-1)
-            basic.pause(200)
-        }
+    }
+    if (input.acceleration(Dimension.Y) > 200) {
+        pacman.change(LedSpriteProperty.Y, 1)
+        basic.pause(200)
+    }
+    if (input.acceleration(Dimension.Y) < -200) {
+        pacman.change(LedSpriteProperty.Y, -1)
+        basic.pause(200)
+    }
+})
+basic.forever(function () {
+    if (pacman.isTouching(janaria)) {
+        game.addScore(1)
+        janaria.delete()
+        janaria = game.createSprite(randint(0, 4), randint(0, 4))
+        janaria.set(LedSpriteProperty.Brightness, 10)
+    }
+    if (pacman.isTouching(mamua)) {
+        game.gameOver()
     }
 })
